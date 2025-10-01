@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿
+using Microsoft.Extensions.Logging;
 
 namespace MauiLoggerTest;
 
@@ -18,9 +19,18 @@ public static class MauiProgram
 			});
 
 		builder.Logging.AddDebug();
-		builder.Logging.AddFilter(AppLoggingFilter.Current.DefaultFilter);
 
-		AppLoggingFilter.Current.Rules = "MainPage;Heroes;Marvel;DC";
+		// Change the default, i.e. turn on LogTrace with LogWarning and LogError.
+		//builder.Logging.AddFilter<Microsoft.Extensions.Logging.Debug.DebugLoggerProvider>("MauiLoggerTest", LogLevel.Trace);
+
+		// Turn on detailed trace for DC heroes but default or less than default settings for Marve heroes.
+		//builder.Logging.AddFilter<Microsoft.Extensions.Logging.Debug.DebugLoggerProvider>("MauiLoggerTest.Heroes", LogLevel.Trace);
+		//builder.Logging.AddFilter<Microsoft.Extensions.Logging.Debug.DebugLoggerProvider>("MauiLoggerTest.Heroes.Marvel", LogLevel.Debug);
+		//builder.Logging.AddFilter<Microsoft.Extensions.Logging.Debug.DebugLoggerProvider>("MauiLoggerTest.Heroes.Marvel.TonyStark", LogLevel.None);
+
+		// Apply experimental runtime filter.
+		//builder.Logging.AddFilter(AppLoggingFilter.Current.DefaultFilter);
+		//AppLoggingFilter.Current.Rules = "MainPage;Heroes;Marvel;DC";
 
 		builder.Services.AddTransient<MainPage>();
 
