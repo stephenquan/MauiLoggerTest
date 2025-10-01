@@ -11,5 +11,5 @@ public class BruceWayne
 	/// <summary>
 	/// Gets the logger instance for the <see cref="BruceWayne"/> class.
 	/// </summary>
-	public static ILogger? Logger { get; } = IPlatformApplication.Current?.Services.GetService<ILogger<BruceWayne>>();
+	public static ILogger? Logger { get; } = AppServices.GetService<ILogger<BruceWayne>>();
 }

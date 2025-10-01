@@ -16,7 +16,7 @@ public partial class MainPage : ContentPage
 	/// <summary>
 	/// Gets the logger instance used for general application logging.
 	/// </summary>
-	public static ILogger? Logger = IPlatformApplication.Current?.Services.GetService<ILogger<MainPage>>();
+	public static ILogger? Logger { get; } = AppServices.GetService<ILogger<MainPage>>();
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="MainPage"/> class.
