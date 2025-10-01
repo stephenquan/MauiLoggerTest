@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Extensions.Logging;
 
-namespace MauiLoggerTest.Heroes.DC;
+namespace MauiLoggerTest.Core.Heroes.DC;
 
 /// <summary>
 /// This is an ILogger test class representing the character Barry Allen from the DC universe.

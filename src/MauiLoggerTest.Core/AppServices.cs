@@ -1,4 +1,4 @@
-﻿namespace MauiLoggerTest;
+﻿namespace MauiLoggerTest.Core;
 
 /// <summary>
 /// Mock class to access application services.

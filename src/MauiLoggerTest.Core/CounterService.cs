@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace MauiLoggerTest;
+namespace MauiLoggerTest.Core;
 
 /// <summary>
 /// A sample class to demonstrate ILogger functionality in a MAUI application.

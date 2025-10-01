@@ -1,5 +1,5 @@
 ﻿
-using Microsoft.Extensions.Logging;
+using MauiLoggerTest.Core;
 
 namespace MauiLoggerTest;
 
@@ -11,11 +11,6 @@ namespace MauiLoggerTest;
 /// multiple logger instances. Each logger is associated with a specific hero or general application context.</remarks>
 public partial class MainPage : ContentPage
 {
-	/// <summary>
-	/// Gets the logger instance used for general application logging.
-	/// </summary>
-	public static ILogger? Logger { get; } = AppServices.GetService<ILogger<MainPage>>();
-
 	CounterService countService = new();
 
 	/// <summary>
