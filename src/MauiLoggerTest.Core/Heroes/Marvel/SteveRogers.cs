@@ -11,5 +11,5 @@ public class SteveRogers
 	/// <summary>
 	/// Gets the logger instance for the <see cref="SteveRogers"/> class.
 	/// </summary>
-	public static ILogger? Logger { get; set; } = AppServices.GetService<ILogger<SteveRogers>>();
+	public static ILogger? Logger { get; } = AppServices.GetService<ILogger<SteveRogers>>();
 }
