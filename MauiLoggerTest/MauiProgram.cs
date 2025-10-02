@@ -20,14 +20,15 @@ public static class MauiProgram
 
 #if DEBUG
 		builder.Logging.AddDebug();
+		builder.Logging.AddConsole();
 
 		// Change the default, i.e. turn on LogTrace with LogWarning and LogError.
-		//builder.Logging.SetMinimumLevel(LogLevel.Trace);
+		builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
 		// Turn on detailed trace for DC heroes but default or less than default settings for Marvel heroes.
 		//builder.Logging.AddFilter("MauiLoggerTest.Heroes", LogLevel.Trace);
-		//builder.Logging.AddFilter("MauiLoggerTest.Heroes.Marvel", LogLevel.Debug);
-		//builder.Logging.AddFilter("MauiLoggerTest.Heroes.Marvel.TonyStark", LogLevel.None);
+		builder.Logging.AddFilter("MauiLoggerTest.Heroes.Marvel", LogLevel.Debug);
+		builder.Logging.AddFilter("MauiLoggerTest.Heroes.Marvel.TonyStark", LogLevel.None);
 
 		// Apply experimental runtime filter.
 		//builder.Logging.AddFilter(AppLoggingFilter.Current.DefaultFilter);

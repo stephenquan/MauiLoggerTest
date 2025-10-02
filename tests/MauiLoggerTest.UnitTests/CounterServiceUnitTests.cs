@@ -16,18 +16,18 @@ public class CounterServiceUnitTests
 {
 	public CounterServiceUnitTests(ITestOutputHelper testOutputHelper)
 	{
+		// Initialize the static OutputHelper property for XunitLogger.
 		XunitLogger.OutputHelper = testOutputHelper;
 
-		var SC = new ServiceCollection();
-		SC.AddLogging(configure =>
-		{
-			configure.ClearProviders();
-			configure.SetMinimumLevel(LogLevel.Trace);
-			configure.AddProvider(new XUnitLoggerProvider());
-		});
-		var SP = SC.BuildServiceProvider();
-
-		AppServices.Services = SP;
+		// Setup up Dependency Injection with Logging.
+		AppServices.Services = new ServiceCollection()
+			.AddLogging(configure =>
+			{
+				configure.ClearProviders();
+				configure.SetMinimumLevel(LogLevel.Trace);
+				configure.AddProvider(new XUnitLoggerProvider());
+			})
+			.BuildServiceProvider();
 	}
 
 	[Fact]
