@@ -18,7 +18,26 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+#if DEBUG
 		builder.Logging.AddDebug();
+		builder.Logging.SetMinimumLevel(LogLevel.Trace);
+#endif
+
+		/*
+#if DEBUG
+		builder.Services.AddLogging(
+			configure =>
+			{
+				configure.ClearProviders();
+				configure.AddDebug();
+				configure.SetMinimumLevel(LogLevel.Trace);
+				configure.AddFilter("MauiLoggerTest.Heroes", LogLevel.Trace);
+				configure.AddFilter("MauiLoggerTest.Heroes.Marvel", LogLevel.Debug);
+				configure.AddFilter("MauiLoggerTest.Heroes.TonyStark", LogLevel.None);
+				configure.SetMinimumLevel(LogLevel.Debug);
+			});
+#endif
+		*/
 
 		// Change the default, i.e. turn on LogTrace with LogWarning and LogError.
 		//builder.Logging.AddFilter("MauiLoggerTest", LogLevel.Trace);

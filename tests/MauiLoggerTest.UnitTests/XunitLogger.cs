@@ -6,18 +6,22 @@ namespace MauiLoggerTest.UnitTests;
 /// <summary>
 /// Provides a logger implementation that writes log messages to an xUnit test output.
 /// </summary>
-/// <typeparam name="T">The type associated with the logger, typically used to categorize log messages.</typeparam>
-public class XunitLogger<T> : ILogger where T : class
+public class XunitLogger : ILogger
 {
-	ITestOutputHelper OutputHelper { get; }
+	String categoryName { get; } = string.Empty;
+
+	/// <summary>
+	/// Gets or sets the xUnit test output helper used to write log messages to the test output.
+	/// </summary>
+	public static ITestOutputHelper? OutputHelper { get; set; }
 
 	/// <summary>
 	/// Initializes a new instance of the XunitLogger class with the specified test output helper.
 	/// </summary>
-	/// <param name="outputHelper">The test output helper used to write log messages to the test output.</param>
-	public XunitLogger(ITestOutputHelper outputHelper)
+	/// <param name="categoryName"></param>
+	public XunitLogger(string categoryName)
 	{
-		OutputHelper = outputHelper;
+		this.categoryName = categoryName;
 	}
 
 	/// <summary>
@@ -31,7 +35,7 @@ public class XunitLogger<T> : ILogger where T : class
 	/// <param name="formatter">A function that formats the state and exception into a log message string.</param>
 	public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
 	{
-		OutputHelper.WriteLine(typeof(T).ToString() + ": " + logLevel.ToString() + ": " + formatter(state, exception));
+		OutputHelper?.WriteLine(categoryName + ": " + logLevel.ToString() + ": " + formatter(state, exception));
 	}
 
 	/// <summary>

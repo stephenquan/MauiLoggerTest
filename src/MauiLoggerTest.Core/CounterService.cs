@@ -10,7 +10,7 @@ public class CounterService
 	/// <summary>
 	/// Gets the logger instance for the <see cref="CounterService"/> class.
 	/// </summary>
-	public static ILogger? Logger { get; set; } = AppServices.GetService<ILogger<CounterService>>();
+	public static ILogger? Logger { get; } = AppServices.GetService<ILogger<CounterService>>();
 
 	/// <summary>
 	/// Gets or sets the count value.

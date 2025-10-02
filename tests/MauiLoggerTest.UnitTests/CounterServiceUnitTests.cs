@@ -1,5 +1,6 @@
 ﻿
 using MauiLoggerTest.Core;
+using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
 namespace MauiLoggerTest.UnitTests;
@@ -13,12 +14,20 @@ namespace MauiLoggerTest.UnitTests;
 /// </summary>
 public class CounterServiceUnitTests
 {
-	ITestOutputHelper TestOutputHelper { get; }
-
 	public CounterServiceUnitTests(ITestOutputHelper testOutputHelper)
 	{
-		TestOutputHelper = testOutputHelper;
-		CounterService.Logger = new XunitLogger<CounterService>(TestOutputHelper);
+		XunitLogger.OutputHelper = testOutputHelper;
+
+		var SC = new ServiceCollection();
+		SC.AddLogging(configure =>
+		{
+			configure.ClearProviders();
+			configure.SetMinimumLevel(LogLevel.Trace);
+			configure.AddProvider(new XUnitLoggerProvider());
+		});
+		var SP = SC.BuildServiceProvider();
+
+		AppServices.Services = SP;
 	}
 
 	[Fact]
